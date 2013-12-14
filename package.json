@@ -1,17 +1,22 @@
 {
-  "name": "",
+  "name": "msw-api",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Node wrapper for Magicseaweed API",
+  "main": "lib/main.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [
-    ""
+    "magicseaweed", "msw", "msw api"
   ],
+  "dependencies": {
+    "moment": "=2.4.0",
+    "underscore": "=1.5.2"
+  },
   "devDependencies": {
     "mocha": "=1.13.0",
-    "chai":  "1.8.1"
+    "chai":  "=1.8.1",
+    "nock": "=0.25.0"
   },
   "author": "justin j. moses",
   "license": "BSD-2-Clause"

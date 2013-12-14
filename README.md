@@ -1,4 +1,6 @@
-node-template
+Magicseaweed API
 =============
 
-simple starter for node TDD
+Node wrapper for Magicseaweed (MSW) developer API. 
+
+[MSW API Docs](magicseaweed.com/developer/forecast-api)

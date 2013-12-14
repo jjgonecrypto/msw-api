@@ -1,4 +1,5 @@
 {
     "spaces": 4,
-    "strict": true
+    "strict": true,
+    "trailing": true
 }
