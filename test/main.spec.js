@@ -17,7 +17,7 @@ describe('MSW API', function() {
         nock('http://magicseaweed.com').get('/api/*/forecast/?spot_id=' + spotId).reply(200, mocks[spotId]);
     });
 
-    describe('get forecast', function () {
+    describe('forecast()', function () {
         beforeEach(function () {
             msw.set({apiKey: '*'});
         });
@@ -25,11 +25,16 @@ describe('MSW API', function() {
         it('must support basic operation', function () { 
             expect(typeof msw.forecast === 'function').to.be.true;
             msw.forecast(2544);
-        });    
+        });
 
+        it('must return a promise');
+
+        it('must deliver on the promise when http result is 200');
+
+        it('must fail the promise when http result is not 200');    
     });
 
-    describe('set', function () {
+    describe('set()', function () {
         it('must support setting the apiKey', function () {
             expect(msw.set({apiKey: "123"}).apiKey).to.equal("123"); 
         });
