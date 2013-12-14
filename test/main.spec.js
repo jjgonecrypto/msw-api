@@ -24,7 +24,7 @@ describe('MSW API', function() {
 
         it('must support basic operation', function () { 
             expect(typeof msw.forecast === 'function').to.be.true;
-
+            msw.forecast(2544);
         });    
 
     });
