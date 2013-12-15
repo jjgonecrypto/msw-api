@@ -1,6 +1,8 @@
 Magicseaweed API
 =============
 
+![](https://travis-ci.org/justinjmoses/msw-api.png)
+
 Node wrapper for Magicseaweed (MSW) developer API. 
 
 [MSW API Docs](http://magicseaweed.com/developer/forecast-api)
