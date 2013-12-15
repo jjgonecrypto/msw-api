@@ -15,8 +15,8 @@ describe('Forecast', function() {
 
     describe('toString()', function () {
         it('must output data in correct format', function () {
-            console.log(forecast.toString());
-    
+            //count number of output lines
+            expect(forecast.toString().split('\n')).to.have.length(mocks["2544"].length + 1);
         });
     });
 });

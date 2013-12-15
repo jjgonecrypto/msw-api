@@ -11,12 +11,17 @@
   ],
   "dependencies": {
     "moment": "=2.4.0",
-    "underscore": "=1.5.2"
+    "underscore": "=1.5.2",
+    "q": "=0.9.7"
   },
   "devDependencies": {
     "mocha": "=1.13.0",
     "chai":  "=1.8.1",
-    "nock": "=0.25.0"
+    "nock": "=0.25.0",
+    "chai-as-promised": "=4.1.0"
+  },
+  "engines": { 
+    "node": ">0.6.0"
   },
   "author": "justin j. moses",
   "license": "BSD-2-Clause"
