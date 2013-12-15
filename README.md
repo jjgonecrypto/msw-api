@@ -9,13 +9,16 @@ Example
 ------    
 
 Add the API to your module
+
     var msw = require('msw-api');
 
 Configure the instance to use your API key
+
     msw.set({ apiKey: 'YOUR API KEY GOES HERE' });
 
 Call and utilize the swell data
-    msw.forecast(358).then(function (forecast) {
+   
+     msw.forecast(358).then(function (forecast) {
         console.log('Successfully retrived data for Manasquan, NJ');
         console.log(forecast.toString()); 
     }, function (err) {
