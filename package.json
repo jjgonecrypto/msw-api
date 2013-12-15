@@ -1,13 +1,15 @@
 {
   "name": "msw-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node wrapper for Magicseaweed API",
   "main": "lib/main.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [
-    "magicseaweed", "msw", "msw api"
+    "magicseaweed",
+    "msw",
+    "msw api"
   ],
   "dependencies": {
     "moment": "=2.4.0",
@@ -16,11 +18,11 @@
   },
   "devDependencies": {
     "mocha": "=1.13.0",
-    "chai":  "=1.8.1",
+    "chai": "=1.8.1",
     "nock": "=0.25.0",
     "chai-as-promised": "=4.1.0"
   },
-  "engines": { 
+  "engines": {
     "node": ">0.6.0"
   },
   "repository": {
