@@ -29,3 +29,4 @@ msw.forecast(358).then(function (forecast) {
 }, function (err) {
     console.log('ERR: encountered error getting MSW data: ' + err);
 });
+```
