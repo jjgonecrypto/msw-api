@@ -32,8 +32,7 @@ describe('MSW API', function () {
         });
 
         it('must return a promise', function (done) {
-            expect(msw.forecast(2544)).to.eventually.be.fulfilled.with.property('prototype', Forecast).and.notify(done);
-         
+            expect(msw.forecast(2544)).to.eventually.be.instanceof(Forecast).and.notify(done);
         });
 
         it('must fail the promise when http result is not 200', function (done) {

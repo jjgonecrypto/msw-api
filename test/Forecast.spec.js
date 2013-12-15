@@ -10,7 +10,7 @@ var Forecast = require('../lib/Forecast.js');
 describe('Forecast', function() {
     var forecast;
     beforeEach(function () {
-        forecast = Forecast.init(mocks["2544"]);
+        forecast = new Forecast(mocks["2544"]);
     });
 
     describe('toString()', function () {
