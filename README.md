@@ -33,7 +33,7 @@ msw.forecast(358).then(function (forecast) {
 });
 ```
 
-Outputs something like:
+Outputs swell data in the following format:
 
 ````
 Dec 13 01:00  ★       3-4ft (4.5ft 9s ENE)  12mph E     1F
