@@ -2,6 +2,7 @@
   "indent": 4,
   "strict": true,
   "trailing": true,
+  "undef": true,
   "node": true,
   "globals": { "describe": false, "it": false, "beforeEach": false, "afterEach": false },
   "quotmark": "single",
