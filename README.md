@@ -35,7 +35,7 @@ msw.forecast(358).then(function (forecast) {
 
 Outputs swell data in the following format:
 
-````
+```
 Dec 13 01:00  ★       3-4ft (4.5ft 9s ENE)  12mph E     1F
 Dec 13 04:00  ★       3-4ft (4.5ft 9s ENE)  12mph E     1F
 Dec 13 07:00  ★       3-4ft (4.5ft 9s ENE)  12mph ENE   1F
@@ -53,3 +53,4 @@ Dec 14 16:00  ★       2-4ft (5ft 8s ENE)    12mph E     10F
 Dec 14 19:00  ★       2-4ft (5ft 8s ENE)    10mph E     11F
 Dec 14 22:00  ★       2-4ft (5ft 8s ENE)    12mph E     11F
 ```
+
