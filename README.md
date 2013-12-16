@@ -22,6 +22,12 @@ Configure the instance to use your API key
 msw.set({ apiKey: 'YOUR API KEY GOES HERE' });
 ```
 
+Optionally set the units you want (option of US, EU &amp; UK). Default of 'US'.
+
+```javascript
+msw.set({ units: 'EU' });
+```
+
 Call and utilize the swell data
 
 ```javascript   
