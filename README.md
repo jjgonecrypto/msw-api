@@ -24,7 +24,7 @@ msw.set({ apiKey: 'YOUR API KEY GOES HERE' });
 
 Call and utilize the swell data
 
-````javascript   
+```javascript   
 msw.forecast(358).then(function (forecast) {
     console.log('Successfully retrived data for Manasquan, NJ');
     console.log(forecast.toString()); 
