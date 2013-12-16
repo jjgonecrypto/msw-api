@@ -3,5 +3,5 @@
     "strict": true,
     "trailing": true,
     "node": true,
-    "quoteark": "single"
+    "quotmark": "single"
 }
