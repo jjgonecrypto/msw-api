@@ -1,3 +1,9 @@
 {
-  "globals": { "describe", "it" }
+  "indent": 4,
+  "strict": true,
+  "trailing": true,
+  "node": true,
+  "globals": { "describe": false, "it": false, "beforeEach": false, "afterEach": false },
+  "quotmark": "single",
+  "expr": true
 }

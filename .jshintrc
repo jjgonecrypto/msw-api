@@ -1,5 +1,7 @@
 {
-    "spaces": 4,
+    "indent": 4,
     "strict": true,
-    "trailing": true
+    "trailing": true,
+    "node": true,
+    "quoteark": "single"
 }
