@@ -1,7 +1,7 @@
 Magicseaweed API
 =============
 
-![](https://travis-ci.org/justinjmoses/msw-api.png)
+[![Build Status](https://travis-ci.org/justinjmoses/msw-api.png)](https://travis-ci.org/justinjmoses/msw-api)
 
 Node wrapper for Magicseaweed (MSW) developer API. 
 
