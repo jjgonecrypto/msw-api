@@ -58,5 +58,11 @@ describe('MSW API', function () {
             expect(msw.set({units: ''}).units).to.equal('uk'); //no change
             expect(msw.set({units: 'Un'}).units).to.equal('uk'); //no change
         });
+
+        it('must support setting apiKey and units together', function () {
+            var config = msw.set({apiKey: '123', units: 'EU' });
+            expect(config.apiKey).to.equal('123');
+            expect(config.units).to.equal('eu');
+        });
     });
 });
