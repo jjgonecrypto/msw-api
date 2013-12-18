@@ -2,6 +2,7 @@
 
 var chai = require('chai');
 var expect = chai.expect;
+var moment = require('moment');
 
 var mocks = require('./mocks.js');
 var Forecast = require('../lib/Forecast.js');
@@ -17,9 +18,7 @@ describe('Forecast', function() {
         it('must output data in correct format', function () {
             //count number of output lines
             expect(forecast.toString().split('\n')).to.have.length(mockData.length + 1);
-            
-
-            console.log(forecast.toString());
+            console.log(forecast.toString({ utc: true }));
         });
     });
 
@@ -136,23 +135,21 @@ describe('Forecast', function() {
 
         it('must support inclusive querying by MIN & MAX local datetime', function () {
             //return all forecasts on or after a given date
-            expect(forecast.where({ minDateTime: new Date(2013, 11, 20) })).to.have.length(22);
+            expect(forecast.where({ minDateTime: moment.utc([2013, 11, 20]).toDate() })).to.have.length(24);
 
             //return all forecasts on or before a given date
-            expect(forecast.where({ maxDateTime: new Date(2013, 11, 18, 23, 59) })).to.have.length(10);
+            expect(forecast.where({ maxDateTime: moment.utc([2013, 11, 18, 23, 59]) })).to.have.length(8);
            
             //respects the time as well as date
-            expect(forecast.where({ maxDateTime: new Date(2013, 11, 18, 21, 59) })).to.have.length(9);
+            expect(forecast.where({ maxDateTime: moment.utc([2013, 11, 18, 20, 59]) })).to.have.length(7);
             
             //return all forecasts between dates
             expect(forecast.where
                 ({
-                    minDateTime: new Date(2013, 11, 22, 9),
-                    maxDateTime: new Date(2013, 11, 22, 16)
+                    minDateTime: moment.utc([2013, 11, 22, 9]),
+                    maxDateTime: moment.utc([2013, 11, 22, 16])
                 })).to.have.length(3);
         });
-        
-        
         
         //0.0.7 release
         it('must support inclusive selection by MIN occurence of findings in a sequence');
