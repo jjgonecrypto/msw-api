@@ -9,14 +9,17 @@ var Forecast = require('../lib/Forecast.js');
 describe('Forecast', function() {
     var forecast, mockData;
     beforeEach(function () {
-        mockData = mocks['2544'];
-        forecast = new Forecast(mocks['2544']);
+        mockData = mocks['169'];
+        forecast = new Forecast(mocks['169']);
     });
 
     describe('toString()', function () {
         it('must output data in correct format', function () {
             //count number of output lines
             expect(forecast.toString().split('\n')).to.have.length(mockData.length + 1);
+            
+
+            console.log(forecast.toString());
         });
     });
 
@@ -35,16 +38,17 @@ describe('Forecast', function() {
     describe('where()', function () {
 
         //
-        //0.0.5 release
-        it('must support inclusive querying by MIN & MAX swell height');
-        //return all forecasts at or above 3 in height
-        //eg. forecast.where({ minBreakingHeight: 3 })
-        
-        //return all forecasts at or below 5 in height
-        //eg. forecast.where({ maxBreakingHeight: 5 })
+        //0.0.6 release
+        it('must support inclusive querying by MIN & MAX swell height', function () {
+            //return all forecasts at or above 6 in height
+            expect(forecast.where({ minBreakingHeight: 6 })).to.have.length(28);
 
-        //return all forecasts between 3 and 5 inclusive
-        //eg. forecast.where({ minBreakingHeight: 3, maxBreakingHeight: 5 })
+            //return all forecasts at or below 10 in height
+            expect(forecast.where({ maxBreakingHeight: 10 })).to.have.length(26);
+
+            //return all forecasts between 6 and 10 inclusive
+            expect(forecast.where({ minBreakingHeight: 6, maxBreakingHeight: 10 })).to.have.length(14);
+        });
 
         it('must support inclusive querying by MIN & MAX solid stars');
         //eg. forecast.where({ minSolidStars: X })
@@ -68,7 +72,7 @@ describe('Forecast', function() {
         //eg. forecast.where({ minPeriod: 12, minSolidStars: 2, maxWindDir: 10 })
         
         
-        //0.0.6 release
+        //0.0.7 release
         it('must support inclusive selection by MIN occurence of findings in a sequence');
         //return 3+ successive forecasts where all meet the given criteria
         //eg. forecast.where({ minSolidStars: 4, minSequence: 3 })
