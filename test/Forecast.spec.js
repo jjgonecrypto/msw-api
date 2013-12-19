@@ -34,6 +34,17 @@ describe('Forecast', function() {
         });
     });
 
+    describe('filter()', function () {
+        it('must create a new instance of Forecast', function () {
+            var result = forecast.filter(function (entry, i) {
+                return i % 2 === 0;
+            });
+            expect(result).to.be.instanceof(Forecast);
+            expect(result.size()).to.equal(20);
+            expect(forecast.size()).to.equal(40);
+        });
+    });
+
     describe('where()', function () {
 
         it('must throw errors for undefined parameters', function () {
@@ -162,9 +173,10 @@ describe('Forecast', function() {
         });
         
         //0.0.8 release
-        it('must support inclusive selection by MIN occurence of findings in a sequence');
-        //return 3+ successive forecasts where all meet the given criteria
-        //eg. forecast.where({ minSolidStars: 4, minSequence: 3 })
+        it('must support inclusive selection by MIN occurence of findings in a sequence', function () {
+            //return 3+ successive forecasts where all meet the given criteria
+            console.log(forecast.where({ minSolidStars: 5, minSequence: 3 }).toString());
+        });
 
         it('must support inclusive selection by MIN day occurence of findings in a sequence');
         //return all forecasts with 2 successive days where each day has at least one forecast meeting the criteria

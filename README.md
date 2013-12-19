@@ -96,6 +96,24 @@ msw.forecast(358).then(function (forecast) {
 
 This is the instance yielded by a fulfilled `msw.forecast()` promise. 
 
+###forecast.filter(): Creates new Forecast by filtering entries
+```javascript
+//signature
+forecast.filter(Function callback) : Forecast
+```
+
+Creates a new `Forecast` via a boolean callback function. Note that the underlying `ForecastEntry` instances are shared by reference and thus are mutable. 
+
+Callback of the standard form `function (item, index, array)`.
+
+```javascript
+msw.forecast(358).then(function (forecast) {
+    var newForecast = forecast.filter(function (entry, i) {
+        return entry.swell.components.secondary.height < 4;
+    });
+}, ...);
+```
+
 ###forecast.toArray(): Swell data as Array
 ```javascript
 //signature
