@@ -149,6 +149,7 @@ describe('Forecast', function() {
                     minDateTime: moment.utc([2013, 11, 22, 9]),
                     maxDateTime: moment.utc([2013, 11, 22, 16])
                 })).to.have.length(3);
+            
         });
         
         //0.0.7 release

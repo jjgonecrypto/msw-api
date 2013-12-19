@@ -28,21 +28,44 @@ describe('MSW API', function () {
     });
 
     describe('forecast()', function () {
-        beforeEach(function () {
-            msw.set({ apiKey: apiKey, units: 'us' });
+        it('must throw Error if apiKey not set', function () {
+            expect(function () { msw.forecast(1234); }).to.throw(Error);
         });
 
-        it('must support basic operation', function () {
-            expect(typeof msw.forecast === 'function').to.be.true;
-        });
+        describe('with apiKey previously set', function () {
+            beforeEach(function () {
+                msw.set({ apiKey: apiKey, units: 'us' });
+            });
 
-        it('must return a promise', function (done) {
-            expect(msw.forecast(2544)).to.eventually.be.instanceof(Forecast).and.notify(done);
-        });
+            it('must throw if no spotId given', function () {
+                expect(function () { msw.forecast(); }).to.throw(Error);
+            });
 
-        it('must fail the promise when http result is not 200', function (done) {
-            mockSpot(123, 'us', 404);
-            expect(msw.forecast(123)).to.eventually.be.rejected.and.notify(done);
+            describe('options param', function () {
+                it('must contain spotId', function () {
+                    expect(function () { msw.forecast({}); }).to.throw(Error);
+                    expect(msw.forecast({ spotId: 2544 })).to.not.throw;
+                });
+                it('may override the existing units', function () {
+                    //as URI with 'units=us' query param set, an invalid units will simply be ignore
+                    expect(function () { msw.forecast({ spotId: 2544, units: 'xx' }); }).to.not.throw;
+                    //as URI with 'units=eu' is not mocked, then an error should occur here
+                    expect(function () { msw.forecast({ spotId: 2544, units: 'EU' }); }).to.throw(Error);
+                    //mock the spot with EU units
+                    mockSpot(2544, 'eu', 200);
+                    //expect the units endpoint to pass
+                    expect(function () { msw.forecast({ spotId: 2544, units: 'EU' }); }).to.not.throw(Error);                    
+                });
+            });
+
+            it('must return a promise', function (done) {
+                expect(msw.forecast(2544)).to.eventually.be.instanceof(Forecast).and.notify(done);
+            });
+
+            it('must fail the promise when http result is not 200', function (done) {
+                mockSpot(123, 'us', 404);
+                expect(msw.forecast(123)).to.eventually.be.rejected.and.notify(done);
+            });
         });
     });
 
