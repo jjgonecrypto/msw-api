@@ -175,7 +175,7 @@ describe('Forecast', function() {
         //0.0.8 release
         it('must support inclusive selection by MIN occurence of findings in a sequence', function () {
             //return 3+ successive forecasts where all meet the given criteria
-            console.log(forecast.where({ minSolidStars: 5, minSequence: 3 }).toString());
+            console.log(forecast.where({ maxSolidStars: 3, minSequence: 3 }).toString({ utc:true }));
         });
 
         it('must support inclusive selection by MIN day occurence of findings in a sequence');
