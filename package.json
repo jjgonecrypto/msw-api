@@ -4,7 +4,7 @@
   "description": "Node wrapper for Magicseaweed API",
   "main": "lib/main.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "keywords": [
     "magicseaweed",

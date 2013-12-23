@@ -192,6 +192,7 @@ Can use any combination of the following for:
 * __Wind speed__: (the direction of wind in units): `minWindSpeed` &/or `maxWindSpeed`
 * __Wind direction__ (the direction of the wind represented as degrees in the range 0° to 360°): `lowerWindDirection` AND `upperWindDirection`. __Both parameters are required to query on wind direction__.
 * __Datetime__: (the datetime of the forecast relative to the zone's timezone) `minDateTime` &/or `maxDateTime`
+* __Sequence__: (the number of consecutive entries that must occur in order for the entry to be returned) `minSequence`
 
 >Refer to [MSW Guide](http://magicseaweed.com/developer/forecast-api) for Solid & Faded star definitions
 
@@ -209,4 +210,7 @@ forecast.where({ minSolidStars: 3, minFadedStars: 1 });
 
 //get all forecast entries with 5 or more solid stars, at least 6 in min breaking height and a 16 or more second period
 forecast.where({ minSolidStars: 5, minBreakingHeight: 6, minPeriod: 16 });
+
+//get all forecast entries with at least 17s period and wind no greater than 10 (mph) which occur in a sequence of at least three entries in length 
+forecast.where({ minPeriod: 17, maxWindSpeed: 10, minSequence: 3 });
 ```

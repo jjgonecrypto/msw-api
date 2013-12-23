@@ -176,9 +176,7 @@ describe('Forecast', function() {
         it('must support inclusive selection by MIN occurence of findings in a sequence', function () {
             //return 3+ successive forecasts where all meet the given criteria
             expect(forecast.where({ maxSolidStars: 3, minSequence: 3 }).size()).to.equal(5);
-            console.log(forecast.where({ minPeriod: 17, maxWindSpeed: 10, minSequence: 3 }).toString({ utc: true }));
             expect(forecast.where({ minPeriod: 17, maxWindSpeed: 10, minSequence: 3 }).size()).to.equal(3);
-             
         });
 
         it('must support inclusive selection by MIN day occurence of findings in a sequence');
