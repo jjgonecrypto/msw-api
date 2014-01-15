@@ -19,6 +19,10 @@ describe('Forecast', function() {
             //count number of output lines
             expect(forecast.toString().split('\n')).to.have.length(mockData.length + 1);
             console.log(forecast.toString({ utc: true }));
+
+        });
+        it('must support html output', function () {
+            expect(forecast.toString({html: true}).split('<tr>')).to.have.length(mockData.length + 2);
         });
     });
 
@@ -172,7 +176,7 @@ describe('Forecast', function() {
             
         });
         
-        //0.0.8 release
+        //0.0.9 release
         it('must support inclusive selection by MIN occurence of findings in a sequence', function () {
             //return 3+ successive forecasts where all meet the given criteria
             expect(forecast.where({ maxSolidStars: 3, minSequence: 3 }).size()).to.equal(5);

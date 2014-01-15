@@ -153,7 +153,15 @@ msw.forecast(358).then(function (forecast) {
 }, ...);
 ```
 
-Returns swell data in the following format:
+Supports HTML table output via:
+
+```javascript
+msw.forecast(358).then(function (forecast) {
+    console.log(forecast.toString({ html: true }));
+}, ...);
+```
+
+Returns swell data in the following format (when `html` is not `true`):
 
 ```
 Dec 13 01:00  ★       3-4ft (4.5ft 9s ENE)  12mph E     1F
