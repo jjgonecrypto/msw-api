@@ -185,6 +185,16 @@ msw.forecast(358).then(function (forecast) {
 }, ...);
 ```
 
+Allows custom date formatting via:
+
+```javascript
+msw.forecast(358).then(function (forecast) {
+    console.log(forecast.toString({ dateFormat: 'ddd MMM D HH:mm' })); //eg. Mon Dec 22 21:00
+}, ...);
+```
+
+>Uses [moment.js date formatting](http://momentjs.com/docs/#/displaying/format/)
+
 Returns swell data in the following format (when `html` is not `true`):
 
 ```

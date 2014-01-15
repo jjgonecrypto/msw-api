@@ -19,8 +19,8 @@ describe('Forecast', function() {
         it('must output data in correct format', function () {
             //count number of output lines
             expect(forecast.toString().split('\n')).to.have.length(mockData.length + 1);
-            console.log(forecast.toString({ utc: true }));
-
+            console.log(forecast.toString({ utc: true, dateFormat: 'ddd MMM D HH:mm' }));
+            //todo: test for UTC and dateFormat
         });
         it('must support html output', function () {
             expect(forecast.toString({html: true}).split('<tr>')).to.have.length(mockData.length + 2);
