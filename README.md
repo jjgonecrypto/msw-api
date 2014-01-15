@@ -172,28 +172,35 @@ msw.forecast(358).then(function (forecast) {
 Supports UTC times via:
 
 ```javascript
-msw.forecast(358).then(function (forecast) {
-    console.log(forecast.toString({ utc: true }));
-}, ...);
+forecast.toString({ utc: true });
 ```
 
 Supports HTML table output via:
 
 ```javascript
-msw.forecast(358).then(function (forecast) {
-    console.log(forecast.toString({ html: true }));
-}, ...);
+forecast.toString({ html: true });
 ```
 
 Allows custom date formatting via:
 
 ```javascript
-msw.forecast(358).then(function (forecast) {
-    console.log(forecast.toString({ dateFormat: 'ddd MMM D HH:mm' })); //eg. Mon Dec 22 21:00
-}, ...);
+forecast.toString({ dateFormat: 'ddd MMM D HH:mm' }); //eg. Mon Dec 22 21:00
 ```
 
 >Uses [moment.js date formatting](http://momentjs.com/docs/#/displaying/format/)
+
+
+Supports modification of entry output via:
+
+```javascript
+//signature
+forecast.toString({ 
+    shouldHighlightEntry: function (ForecastEntry entry):Boolean,
+    highlightEntry: function (String entryStr, ForecastEntry entr):String    
+})
+```
+
+>Requires both `shouldHighlightEntry()` and `highlightEntry()` to be supplied. The former returns `true` or `false` as to whether of not to call the output modifier. The modifier `highlightEntry()` is called to transform the output for that entry if required. 
 
 Returns swell data in the following format (when `html` is not `true`):
 

@@ -19,7 +19,16 @@ describe('Forecast', function() {
         it('must output data in correct format', function () {
             //count number of output lines
             expect(forecast.toString().split('\n')).to.have.length(mockData.length + 1);
-            console.log(forecast.toString({ utc: true, dateFormat: 'ddd MMM D HH:mm' }));
+            console.log(forecast.toString({
+                utc: true,
+                dateFormat: 'ddd MMM D HH:mm',
+                shouldHighlightEntry: function (entry) {
+                    return forecast.toArray().indexOf(entry) % 2 === 0;
+                },
+                highlightEntry: function (entryStr, entry) {
+                    return '*' + entryStr;
+                }
+            }));
             //todo: test for UTC and dateFormat
         });
         it('must support html output', function () {
