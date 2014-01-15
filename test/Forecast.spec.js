@@ -4,14 +4,15 @@ var chai = require('chai');
 var expect = chai.expect;
 var moment = require('moment');
 
-var mocks = require('./mocks.js');
 var Forecast = require('../lib/Forecast.js');
+var mockCallsUsing = require('./mocks.js');
 
 describe('Forecast', function() {
     var forecast, mockData;
     beforeEach(function () {
-        mockData = mocks['169'];
-        forecast = new Forecast(mocks['169']);
+        var mocks = mockCallsUsing('');
+        mockData = mocks.data['169'];
+        forecast = new Forecast(mockData);
     });
 
     describe('toString()', function () {

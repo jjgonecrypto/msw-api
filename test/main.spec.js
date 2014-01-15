@@ -5,25 +5,18 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
-var nock = require('nock');
-
 var msw = require('../lib/main.js');
-var mocks = require('./mocks.js');
 
 var Forecast = require('../lib/Forecast.js');
 
 describe('MSW API', function () {
     var apiKey = '*';
-
-    function mockSpot(spotId, units, response) {
-        var mocked = nock('http://magicseaweed.com').get('/api/' + apiKey + '/forecast/?spot_id=' + spotId + '&units=' + units);
-        mocked.reply(response, (response === 200) ? mocks[spotId] : undefined);
-    }
+    var mocks = msw.mockCallsUsing(apiKey);
 
     beforeEach(function () {
         //prepare mock responses
-        Object.keys(mocks).forEach(function (spotId) {
-            mockSpot(spotId, 'us', 200);
+        Object.keys(mocks.data).forEach(function (spotId) {
+            mocks.mockSpot(spotId, 'us', 200);
         });
     });
 
@@ -52,9 +45,9 @@ describe('MSW API', function () {
                     //as URI with 'units=eu' is not mocked, then an error should occur here
                     expect(function () { msw.forecast({ spotId: 2544, units: 'EU' }); }).to.throw(Error);
                     //mock the spot with EU units
-                    mockSpot(2544, 'eu', 200);
+                    mocks.mockSpot(2544, 'eu', 200);
                     //expect the units endpoint to pass
-                    expect(function () { msw.forecast({ spotId: 2544, units: 'EU' }); }).to.not.throw(Error);                    
+                    expect(function () { msw.forecast({ spotId: 2544, units: 'EU' }); }).to.not.throw(Error);
                 });
             });
 
@@ -63,7 +56,7 @@ describe('MSW API', function () {
             });
 
             it('must fail the promise when http result is not 200', function (done) {
-                mockSpot(123, 'us', 404);
+                mocks.mockSpot(123, 'us', 404);
                 expect(msw.forecast(123)).to.eventually.be.rejected.and.notify(done);
             });
         });

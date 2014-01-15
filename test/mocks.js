@@ -1,14 +1,23 @@
 'use strict';
 
 var fs = require('fs');
+var nock = require('nock');
 
-var mocks = {};
+var mockData = {};
 var path = __dirname + '/samples';
 
 fs.readdirSync(path).forEach(function (file) {
     var spotId = file.split('_')[1];
     var raw = fs.readFileSync(path + '/' + file);
-    mocks[spotId] = JSON.parse(raw);
+    mockData[spotId] = JSON.parse(raw);
 });
 
-module.exports = mocks;
+module.exports = function mockCallsUsing(apiKey) {
+    return {
+        mockSpot: function (spotId, units, response) {
+            var mocked = nock('http://magicseaweed.com').get('/api/' + apiKey + '/forecast/?spot_id=' + spotId + '&units=' + units);
+            mocked.reply(response, (response === 200) ? mockData[spotId] : undefined);
+        },
+        data: mockData
+    };
+};

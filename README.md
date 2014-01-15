@@ -63,7 +63,6 @@ msw.forecast(int spotId | Object options) : Promises/A+ for Forecast
 ```
 
 ```javascript
-
 //Option 1: using spotId integer (uses pre-set `units` via `set()` or default value of 'US')
 msw.forecast(123);
 
@@ -91,6 +90,31 @@ msw.forecast(358).then(function (forecast) {
 ```
 
 >Note: Errors in retrieving data from Magicseaweed, invalid API KEY and invalid spot ID handled by a rejected promise. Handle these errors in second argument to `then()` as per the Promises/A+ spec. 
+
+###msw.mockCallsUsing(): enable mock responses (for testing)
+
+```javascript
+//signature
+var mocks = msw.mockCallsUsing('YOUR API KEY');
+```
+
+##mocks
+
+###mocks.mockSpot(): Mocks a single spot call
+
+```javascript
+//signature
+mocks.mockSpot(int spotId, String units, int httpResponse);
+```
+
+>If the `spotId` does not exist in the samples, or the httpResponse is not `200`, the mocked HTTP response will return `undefined`.
+
+###mocks.data: Sample data for a spot (if any)
+
+```javascript
+var mockSpot169 = mocks.data['169'];
+var forecast = new Forecast(mockSpot169);
+```
 
 ##Forecast 
 
