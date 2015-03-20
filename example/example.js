@@ -1,7 +1,7 @@
 var msw = require('../lib/main.js');
 
 msw.set({
-    apiKey: 'bL2dzxEV9mA99zV03VR5ChueHGiaivr0',
+    apiKey: 'API KEY GOES HERE',
     units: 'US' //optional. one of: 'US', 'EU', 'UK'
 });
 
@@ -18,3 +18,4 @@ msw.forecast(358).then(function (forecast) {
 }, function (err) {
     console.log('ERR: encountered error getting MSW data: ' + err);
 });
+
