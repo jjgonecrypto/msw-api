@@ -1,6 +1,6 @@
 {
   "name": "msw-api",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "Node wrapper for Magicseaweed API",
   "main": "lib/main.js",
   "scripts": {
