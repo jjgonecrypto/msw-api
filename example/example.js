@@ -1,7 +1,7 @@
 var msw = require('../lib/main.js');
 
 msw.set({
-    apiKey: 'API KEY GOES HERE',
+    apiKey: process.env.MSW_API_KEY,
     units: 'US' //optional. one of: 'US', 'EU', 'UK'
 });
 
