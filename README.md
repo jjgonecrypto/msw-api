@@ -3,11 +3,11 @@ Magicseaweed API
 
 [![Build Status](https://travis-ci.org/justinjmoses/msw-api.png)](https://travis-ci.org/justinjmoses/msw-api)
 
-Node wrapper for Magicseaweed (MSW) developer API. 
+Node wrapper for Magicseaweed (MSW) developer API.
 
 [MSW API Docs](http://magicseaweed.com/developer/forecast-api)
 
-##Quickstart
+## Quickstart
 
 ```javascript
 //Add the API to your module
@@ -19,8 +19,8 @@ msw.set({ apiKey: 'YOUR API KEY GOES HERE' , units: 'us' });
 //Get a promise for the swell forecast for spot at id 169 (Mundaka)
 msw.forecast(169).then(function (forecast) {
 
-    //Return all forecasts at least 5 solid stars and at least 6 
-    //(feet in this case as the request was using 'us' units) high, and at least 16s in primary swell period  
+    //Return all forecasts at least 5 solid stars and at least 6
+    //(feet in this case as the request was using 'us' units) high, and at least 16s in primary swell period
     forecast.where
         ({
             minSolidStars: 5,
@@ -33,9 +33,9 @@ msw.forecast(169).then(function (forecast) {
 });
 ```
 
-##API
+## API
 
-###msw.set(): static configuration
+### msw.set(): static configuration
 
 ```javascript
 //signature
@@ -43,7 +43,7 @@ msw.set(Object parameters) : msw;
 ```
 
 ```javascript
-//apiKey: your MSW API key is required for any transactions. 
+//apiKey: your MSW API key is required for any transactions.
 msw.set({ apiKey: 'YOUR API KEY GOES HERE' });
 
 //units: optionally set the units you want (option of US, EU &amp; UK). Default of 'US'. Case insensitive.
@@ -55,7 +55,7 @@ msw.set({ apiKey: 'API KEY', units: 'UK' });
 
 >Go to [MSW](http://magicseaweed.com/developer/sign-up) to get an API key.
 
-###msw.forecast(): get swell forecast
+### msw.forecast(): get swell forecast
 
 ```javascript
 //signature
@@ -66,20 +66,20 @@ msw.forecast(int spotId | Object options) : Promises/A+ for Forecast
 //Option 1: using spotId integer (uses pre-set `units` via `set()` or default value of 'US')
 msw.forecast(123);
 
-//Option 2: using options object 
+//Option 2: using options object
 //  spotId required
 //  units optional: overrides whatever pre-defined units are for this call only
 msw.forecast({ spotId: 123, units: 'eu' });
 ```
 
-Throws `Error` when: 
+Throws `Error` when:
 
 * no parameter is given
 * `apiKey` not `set()`
 
 Returns:
 
-* promise with `Forecast` data. (Specifically returns a [Q](https://github.com/kriskowal/q) promise). 
+* promise with `Forecast` data. (Specifically returns a [Q](https://github.com/kriskowal/q) promise).
 
 ```javascript
 msw.forecast(358).then(function (forecast) {
@@ -89,18 +89,18 @@ msw.forecast(358).then(function (forecast) {
 });
 ```
 
->Note: Errors in retrieving data from Magicseaweed, invalid API KEY and invalid spot ID handled by a rejected promise. Handle these errors in second argument to `then()` as per the Promises/A+ spec. 
+>Note: Errors in retrieving data from Magicseaweed, invalid API KEY and invalid spot ID handled by a rejected promise. Handle these errors in second argument to `then()` as per the Promises/A+ spec.
 
-###msw.mockCallsUsing(): enable mock responses (for testing)
+### msw.mockCallsUsing(): enable mock responses (for testing)
 
 ```javascript
 //signature
 var mocks = msw.mockCallsUsing('YOUR API KEY');
 ```
 
-##mocks
+## mocks
 
-###mocks.mockSpot(): Mocks a single spot call
+### mocks.mockSpot(): Mocks a single spot call
 
 ```javascript
 //signature
@@ -109,24 +109,24 @@ mocks.mockSpot(int spotId, String units, int httpResponse);
 
 >If the `spotId` does not exist in the samples, or the httpResponse is not `200`, the mocked HTTP response will return `undefined`.
 
-###mocks.data: Sample data for a spot (if any)
+### mocks.data: Sample data for a spot (if any)
 
 ```javascript
 var mockSpot169 = mocks.data['169'];
 var forecast = new Forecast(mockSpot169);
 ```
 
-##Forecast 
+## Forecast
 
-This is the instance yielded by a fulfilled `msw.forecast()` promise. 
+This is the instance yielded by a fulfilled `msw.forecast()` promise.
 
-###forecast.filter(): Creates new Forecast by filtering entries
+### forecast.filter(): Creates new Forecast by filtering entries
 ```javascript
 //signature
 forecast.filter(Function callback) : Forecast
 ```
 
-Creates a new `Forecast` via a boolean callback function. Note that the underlying `ForecastEntry` instances are shared by reference and thus are mutable. 
+Creates a new `Forecast` via a boolean callback function. Note that the underlying `ForecastEntry` instances are shared by reference and thus are mutable.
 
 Callback of the standard form `function (item, index, array)`.
 
@@ -138,7 +138,7 @@ msw.forecast(358).then(function (forecast) {
 }, ...);
 ```
 
-###forecast.toArray(): Swell data as Array
+### forecast.toArray(): Swell data as Array
 ```javascript
 //signature
 forecast.toArray() : Array
@@ -146,7 +146,7 @@ forecast.toArray() : Array
 
 Returns an `Array` of `ForecastEntry`.
 
-```javascript   
+```javascript
 msw.forecast(358).then(function (forecast) {
     var all = forecast.toArray();
 }, ...);
@@ -154,16 +154,16 @@ msw.forecast(358).then(function (forecast) {
 
 >Note: the Array is a clone of the underlying `Forecast` data, however each individual `ForecastEntry` is a mutable instance, so be wary of modifying this data.
 
-###forecast.toString(): Swell data as String 
+### forecast.toString(): Swell data as String
 
 ```javascript
 //signature
 forecast.toString([Optional] Object params) : String
 ```
 
-Takes an optional parameter hash and returns a string with one line for each forecast entry. 
+Takes an optional parameter hash and returns a string with one line for each forecast entry.
 
-```javascript   
+```javascript
 msw.forecast(358).then(function (forecast) {
     console.log(forecast.toString());
 }, ...);
@@ -194,13 +194,13 @@ Supports modification of entry output via:
 
 ```javascript
 //signature
-forecast.toString({ 
+forecast.toString({
     shouldHighlightEntry: function (ForecastEntry entry):Boolean,
-    highlightEntry: function (String entryStr, ForecastEntry entr):String    
+    highlightEntry: function (String entryStr, ForecastEntry entr):String
 })
 ```
 
->Requires both `shouldHighlightEntry()` and `highlightEntry()` to be supplied. The former returns `true` or `false` as to whether of not to call the output modifier. The modifier `highlightEntry()` is called to transform the output for that entry if required. 
+>Requires both `shouldHighlightEntry()` and `highlightEntry()` to be supplied. The former returns `true` or `false` as to whether of not to call the output modifier. The modifier `highlightEntry()` is called to transform the output for that entry if required.
 
 Returns swell data in the following format (when `html` is not `true`):
 
@@ -223,18 +223,18 @@ Dec 14 19:00  ★       2-4ft (5ft 8s ENE)    10mph E     11F
 Dec 14 22:00  ★       2-4ft (5ft 8s ENE)    12mph E     11F
 ```
 
-###forecast.where(): Query forecast data
+### forecast.where(): Query forecast data
 
 ```javascript
 //signature
 forecast.where(Object params) : Forecast
 ```
 
-####Supported Parameters
+#### Supported Parameters
 
 Can use any combination of the following for:
 
-* __Breaking height__ (the height of the swell in units): `minBreakingHeight` &/or `maxBreakingHeight` 
+* __Breaking height__ (the height of the swell in units): `minBreakingHeight` &/or `maxBreakingHeight`
 * __Solid stars__ (MSW assigned solid stars): `minSolidStars` &/or `maxSolidStars`
 * __Faded stars__ (MSW assigned faded stars): `minFadedStars` &/or `maxFadedStars`
 * __Swell period__: (the number of seconds of the primary swell period): `minPeriod` &/or `maxPeriod`
@@ -260,6 +260,6 @@ forecast.where({ minSolidStars: 3, minFadedStars: 1 });
 //get all forecast entries with 5 or more solid stars, at least 6 in min breaking height and a 16 or more second period
 forecast.where({ minSolidStars: 5, minBreakingHeight: 6, minPeriod: 16 });
 
-//get all forecast entries with at least 17s period and wind no greater than 10 (mph) which occur in a sequence of at least three entries in length 
+//get all forecast entries with at least 17s period and wind no greater than 10 (mph) which occur in a sequence of at least three entries in length
 forecast.where({ minPeriod: 17, maxWindSpeed: 10, minSequence: 3 });
 ```
